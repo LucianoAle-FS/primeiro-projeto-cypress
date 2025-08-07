@@ -21,7 +21,7 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.dashboardGrid)
   })
   it('Login - Fail', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userfail.username)
     cy.get(selectorsList.passwordField).type(userData.userfail.password)
     cy.get(selectorsList.submitLoginButton).click()
