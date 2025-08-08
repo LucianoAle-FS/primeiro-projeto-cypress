@@ -1,4 +1,5 @@
 import userData from "../fixtures/users/user-data.json"
+import myInfo from "../fixtures/users/my-info.json"
 
 describe('Orange HRM Tests', () => {
 
@@ -9,6 +10,11 @@ describe('Orange HRM Tests', () => {
     sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
     wrongCredentialAlert: "div[role='alert']",
     dashboardGrid: ".orangehrm-dashboard-grid",
+    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+    firstNameField: "[name='firstName']",
+    lastNameField: "[name='lastName']",
+    nickNameField: ".oxd-input--active:nth-of-type(5)",
+    saveButton1: ".oxd-button--secondary:nth-of-type(1)"
   }
 
   
@@ -19,6 +25,12 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.submitLoginButton).click()
     cy.location('pathname').should('equals', '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
+    cy.get(selectorsList.myInfoButton).click()
+    cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.fristName)
+    cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.lastName)
+    cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.nickName)
+    cy.get('button[type="submit"]').first().click()
+    cy.reload()
   })
   it('Login - Fail', () => {
     cy.visit('/auth/login')
