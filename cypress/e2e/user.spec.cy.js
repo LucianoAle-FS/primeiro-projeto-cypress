@@ -2,15 +2,16 @@ import userData from "../fixtures/users/user-data.json"
 import myInfo from "../fixtures/users/my-info.json"
 import LoginPage from "../pages/loginPage"
 import DashboadPage from "../pages/dashboardPage"
+import MenuPage from "../pages/menuPage"
 
 const loginPage = new LoginPage()
 const dashboardPage = new DashboadPage()
+const menuPage = new MenuPage()
 
 describe('Orange HRM Tests', () => {
 
   const selectorsList = {
     sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
-    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
     firstNameField: "[name='firstName']",
     lastNameField: "[name='lastName']",
     genericInput: ".oxd-input",
@@ -23,13 +24,10 @@ describe('Orange HRM Tests', () => {
 
   it.only('Login - Success', () => {
     loginPage.acessLoginPage()
-    loginPage.loginWithUser(userData.userSucess.username,userData.userSucess.password)
-
+    loginPage.loginWithUser(userData.userSucess.username,userData.userSucess.password)    
     dashboardPage.dashboardTrue()
-
-    cy.location('pathname').should('equals', '/web/index.php/dashboard/index')
+    menuPage.clickMyInfo()
     
-    cy.get(selectorsList.myInfoButton).click()
     cy.get(selectorsList.firstNameField).clear().type(myInfo.changeDetails.firstName)
     cy.get(selectorsList.lastNameField).clear().type(myInfo.changeDetails.lastName)
     cy.get(selectorsList.genericInput).eq(4).clear().type(myInfo.changeDetails.nickName)

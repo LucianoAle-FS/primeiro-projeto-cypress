@@ -8,7 +8,7 @@ class DashboardPage{
 
     dashboardTrue(){
         cy.location('pathname').should('equals', '/web/index.php/dashboard/index')
-        cy.get(this.selectorList().dashboardGrid)
+        cy.get(this.selectorList().dashboardGrid).should('be.visible')
     }
     
 }
