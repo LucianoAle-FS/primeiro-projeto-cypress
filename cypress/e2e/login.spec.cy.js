@@ -14,11 +14,13 @@ describe('Orange HRM Tests', () => {
     firstNameField: "[name='firstName']",
     lastNameField: "[name='lastName']",
     genericInput: ".oxd-input",
+    genericComboBox: ".oxd-select-text--arrow",
+    genericListBox: ".oxd-select-dropdown",
     dateField: "[placeholder='yyyy-dd-mm']",
     dateCloseButton: ".--close"
   }
 
-  
+
   it.only('Login - Success', () => {
     cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userSucess.username)
@@ -31,7 +33,12 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.lastNameField).clear().type(myInfo.changeDetails.lastName)
     cy.get(selectorsList.genericInput).eq(4).clear().type(myInfo.changeDetails.nickName)
     cy.get(selectorsList.dateField).eq(0).type(myInfo.changeDetails.dateOne)
-    cy.get('button[type="submit"]').first().click()
+    cy.get(selectorsList.genericComboBox).eq(0).click({ force: true })
+    cy.get(selectorsList.genericListBox).eq(2).click()
+    cy.get(selectorsList.genericComboBox).eq(1).click({ force: true })
+    cy.get(selectorsList.genericListBox).eq(1).click()
+    cy.get('button[type="submit"]').first().click({ force: true })
+    cy.get('body').should('contain', 'Successfully Updated')
     cy.reload()
   })
   it('Login - Fail', () => {
