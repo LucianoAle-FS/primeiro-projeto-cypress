@@ -1,0 +1,16 @@
+class DashboardPage{
+    selectorList(){
+        const selectors = {
+            dashboardGrid: ".orangehrm-dashboard-grid",
+        }
+        return selectors 
+    }
+
+    dashboardTrue(){
+        cy.location('pathname').should('equals', '/web/index.php/dashboard/index')
+        cy.get(this.selectorList().dashboardGrid)
+    }
+    
+}
+
+export default DashboardPage
