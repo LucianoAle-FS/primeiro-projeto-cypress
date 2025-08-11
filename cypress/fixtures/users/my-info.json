@@ -1,8 +1,8 @@
 {
     "changeDetails":{
-        "fristName": "Luciano",
+        "firstName": "Luciano",
         "lastName": "Sobrinho",
-        "nickName": "Herzz"
-        "fistDate": "2025-03-10"
+        "nickName": "Herzz",
+        "dateOne": "2025-03-10"
     }
 }

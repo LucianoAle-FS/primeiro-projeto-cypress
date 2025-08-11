@@ -13,14 +13,13 @@ describe('Orange HRM Tests', () => {
     myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
     firstNameField: "[name='firstName']",
     lastNameField: "[name='lastName']",
-    nickNameField: ".oxd-input--active:nth-of-type(5)",
-    //saveButton1: ".oxd-button--secondary:nth-of-type(1)"
-    dateField: "[placeholder='yyyy-mm-dd']",
+    genericInput: ".oxd-input",
+    dateField: "[placeholder='yyyy-dd-mm']",
     dateCloseButton: ".--close"
   }
 
   
-  it('Login - Success', () => {
+  it.only('Login - Success', () => {
     cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userSucess.username)
     cy.get(selectorsList.passwordField).type(userData.userSucess.password)
@@ -28,10 +27,10 @@ describe('Orange HRM Tests', () => {
     cy.location('pathname').should('equals', '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
     cy.get(selectorsList.myInfoButton).click()
-    cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.fristName)
-    cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.lastName)
-    cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.nickName)
-    cy.get(selectorsList.dateField).type(myInfo.changeDetails.fistDate)
+    cy.get(selectorsList.firstNameField).clear().type(myInfo.changeDetails.firstName)
+    cy.get(selectorsList.lastNameField).clear().type(myInfo.changeDetails.lastName)
+    cy.get(selectorsList.genericInput).eq(4).clear().type(myInfo.changeDetails.nickName)
+    cy.get(selectorsList.dateField).eq(0).type(myInfo.changeDetails.dateOne)
     cy.get('button[type="submit"]').first().click()
     cy.reload()
   })
