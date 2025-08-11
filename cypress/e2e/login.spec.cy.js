@@ -14,7 +14,9 @@ describe('Orange HRM Tests', () => {
     firstNameField: "[name='firstName']",
     lastNameField: "[name='lastName']",
     nickNameField: ".oxd-input--active:nth-of-type(5)",
-    saveButton1: ".oxd-button--secondary:nth-of-type(1)"
+    //saveButton1: ".oxd-button--secondary:nth-of-type(1)"
+    dateField: "[placeholder='yyyy-mm-dd']",
+    dateCloseButton: ".--close"
   }
 
   
@@ -29,6 +31,7 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.fristName)
     cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.lastName)
     cy.get(selectorsList.firstNameField).type(myInfo.changeDetails.nickName)
+    cy.get(selectorsList.dateField).type(myInfo.changeDetails.fistDate)
     cy.get('button[type="submit"]').first().click()
     cy.reload()
   })
