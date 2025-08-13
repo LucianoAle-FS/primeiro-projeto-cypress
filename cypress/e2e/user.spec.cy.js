@@ -5,6 +5,9 @@ import DashboadPage from "../pages/dashboardPage"
 import MenuPage from "../pages/menuPage"
 import MyInfoPage from "../pages/myInfoPage"
 
+const Chance = require('chance')
+const chance = new Chance()
+
 const loginPage = new LoginPage()
 const dashboardPage = new DashboadPage()
 const menuPage = new MenuPage()
@@ -17,7 +20,9 @@ describe('Orange HRM Tests', () => {
     loginPage.loginWithUser(userData.userSucess.username,userData.userSucess.password)    
     dashboardPage.dashboardTrue()
     menuPage.clickMyInfo()
-    infoPage.personalDetails(myInfo.changeDetails.firstName,myInfo.changeDetails.lastName,myInfo.changeDetails.nickName)
+    infoPage.personalDetails(chance.first(), chance.last(), myInfo.changeDetails.nickName)
+    //use data from the myInfo fixture to fill in personal information
+    //infoPage.personalDetails(myInfo.changeDetails.firstName,myInfo.changeDetails.lastName,myInfo.changeDetails.nickName)
     infoPage.dateNationalityStatus(myInfo.changeDetails.dateOne)
     cy.get('body').should('contain', 'Successfully Updated')
     cy.reload()
