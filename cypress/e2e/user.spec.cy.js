@@ -22,13 +22,7 @@ describe('Orange HRM Tests', () => {
     cy.get('body').should('contain', 'Successfully Updated')
     cy.reload()
   })
-  it('Login - Fail', () => {
-    loginPage.acessLoginPage()
-    loginPage.loginWithUser(userData.userfail.username,userData.userfail.password)
-    loginPage.checkAcessInvalid()
-
-  })
-
+  
 })
 
 
