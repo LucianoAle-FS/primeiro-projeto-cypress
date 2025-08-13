@@ -12,19 +12,7 @@ const infoPage = new MyInfoPage()
 
 describe('Orange HRM Tests', () => {
 
-  const selectorsList = {
-    sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
-    firstNameField: "[name='firstName']",
-    lastNameField: "[name='lastName']",
-    genericInput: ".oxd-input",
-    genericComboBox: ".oxd-select-text--arrow",
-    genericListBox: ".oxd-select-dropdown",
-    dateField: "[placeholder='yyyy-dd-mm']",
-    dateCloseButton: ".--close"
-  }
-
-
-  it.only('Login - Success', () => {
+  it('user Info Update - Sucess ', () => {
     loginPage.acessLoginPage()
     loginPage.loginWithUser(userData.userSucess.username,userData.userSucess.password)    
     dashboardPage.dashboardTrue()
@@ -35,11 +23,9 @@ describe('Orange HRM Tests', () => {
     cy.reload()
   })
   it('Login - Fail', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userfail.username)
-    cy.get(selectorsList.passwordField).type(userData.userfail.password)
-    cy.get(selectorsList.submitLoginButton).click()
-    cy.get(selectorsList.wrongCredentialAlert)
+    loginPage.acessLoginPage()
+    loginPage.loginWithUser(userData.userfail.username,userData.userfail.password)
+    loginPage.checkAcessInvalid()
 
   })
 
